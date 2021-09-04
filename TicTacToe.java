@@ -16,12 +16,11 @@ public class TicTacToe {
 				{ '-', '+', '-', '+', '-' },
 				{ ' ', '|', ' ', '|', ' ' } 
 				};
-		boolean gameover = false;
-		while (!gameover) {
+		while (true) {
 			showBoard(gameboard);
 			takeInput(gameboard, "user");
 			takeInput(gameboard, "comp");
-			String a=checkWin(gameover);
+			String a=checkWin();
 			System.out.println(a);
 			if(!a.isEmpty()) 
 			{
@@ -76,7 +75,7 @@ public class TicTacToe {
 			}
 	}
 
-	public static String checkWin(boolean gameover) {
+	public static String checkWin() {
 		List topRow = Arrays.asList(1, 2, 3);
 		List midRow = Arrays.asList(4, 5, 6);
 		List bottRow = Arrays.asList(7, 8, 9);
@@ -98,13 +97,10 @@ public class TicTacToe {
 
 		for (List l : winning) {
 			if (playPos.containsAll(l)) {
-				gameover = true;
 				return "Congrats You won";
-			} else if (cpuPos.containsAll(l)) {
-				gameover = true;
+			} if (cpuPos.containsAll(l)) {
 				return "Cpu Wins";
 			} else if (playPos.size() + cpuPos.size() == 9) {
-				gameover = true;
 				return "TIE";
 			}
 		}
